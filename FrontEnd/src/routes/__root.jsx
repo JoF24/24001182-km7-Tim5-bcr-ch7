@@ -23,13 +23,14 @@ export const Route = createRootRoute({
     component: function RootComponent() {
         const [isSidebarOpen, setIsSidebarOpen] = useState(true);
         const toggleSidebar = () => setIsSidebarOpen(!isSidebarOpen);
+        const { user } = useSelector((state) => state.auth);
 
         // untuk cek apakah pengguna sudah login
         const isLoggedIn = isUserLoggedIn();
 
         return (
             <>
-                {isLoggedIn && (
+                {isLoggedIn && user?.role_id === 1 && (
                     <>
                         <div className={`app-container ${isSidebarOpen ? "sidebar-open" : ""}`}>
                             <TwoToneSidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />

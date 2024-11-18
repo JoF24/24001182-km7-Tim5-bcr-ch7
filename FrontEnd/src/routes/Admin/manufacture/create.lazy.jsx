@@ -9,7 +9,7 @@ import { createManufacture } from "../../service/Manufacture";
 import Protected from "../../components/Auth/Protected";
 import Container from "react-bootstrap/esm/Container";
 
-export const Route = createLazyFileRoute("/manufacture/create")({
+export const Route = createLazyFileRoute("/admin/manufacture/create")({
     component: () => (
         <Protected roles={[1]}>
             <CreateManufacture />

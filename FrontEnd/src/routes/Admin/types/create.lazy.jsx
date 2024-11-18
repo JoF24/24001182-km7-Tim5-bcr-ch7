@@ -9,7 +9,7 @@ import { createType } from "../../service/Types";
 import Protected from "../../components/Auth/Protected";
 import Container from "react-bootstrap/esm/Container";
 
-export const Route = createLazyFileRoute("/types/create")({
+export const Route = createLazyFileRoute("/admin/types/create")({
     component: () => (
         <Protected roles={[1]}>
             <CreateType />
