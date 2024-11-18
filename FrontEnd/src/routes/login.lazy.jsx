@@ -39,7 +39,11 @@ function Login() {
         const result = await login(body);
         if (result.success) {
             dispatch(setToken(result.data.token));
-            navigate({ to: "/" });
+            if (result.data.users?.role_id === 1) {
+                navigate("/admin/manufactures");
+            } else {
+                navigate("/");
+            }
             return;
         }
 

@@ -3,37 +3,37 @@ import { useEffect, useState, useRef } from 'react'
 import { useSelector } from 'react-redux'
 import { useLocation } from '@tanstack/react-router';
 import Row from 'react-bootstrap/Row'
-import Button from 'react-bootstrap/Button';
-import { getType } from "../service/Types";
-import TypeItem from '../components/Type/TypeItem'
+import Button from 'react-bootstrap/Button'
+import { getManufacture } from '../service/Manufacture'
+import ManufactureItem from '../components/Manufacture/ManufactureItem'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export const Route = createLazyFileRoute('/admin/type')({
-  component: Type,
+export const Route = createLazyFileRoute('/admin/manufactures')({
+  component: Index,
 })
 
-function Type() {
+function Index() {
   const { token,user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const location = useLocation();
   const hasShownToast = useRef(false);
   const [successMessage, setSuccessMessage] = useState(location.state?.successMessage || null);
-  const [type, setType] = useState([])
+  const [manufacture, setManufacture] = useState([])
   const [isLoading, setIsLoading] = useState(false)
 
   useEffect(() => {
-    const getTypeData = async () => {
+    const getManufactureData = async () => {
       setIsLoading(true)
-      const result = await getType()
+      const result = await getManufacture()
       if (result.success) {
-        setType(result.data)
+        setManufacture(result.data)
       }
       setIsLoading(false)
     }
 
     if (token) {
-      getTypeData()
+      getManufactureData()
     }
   }, [token])
 
@@ -52,7 +52,7 @@ function Type() {
         {user?.role_id === 1 && (
           <>
             <div className="d-flex justify-content-end mb-3">
-              <Button as={Link} to="/types/create" variant="primary" size="md">
+              <Button as={Link} to="/admin/manufacture/create" variant="primary" size="md">
                 + Tambah Data
               </Button>
             </div>
@@ -65,12 +65,12 @@ function Type() {
 
         {isLoading ? (
           <h1>Loading....</h1>
-        ) : type.length === 0 ? (
-          <h1>Type data is not found !</h1>
+        ) : manufacture.length === 0 ? (
+          <h1>Manufacture data is not found !</h1>
         ) : (
-          type.length > 0 &&
-          type.map((type) => (
-            <TypeItem type={type} key={type?.id} />
+          manufacture.length > 0 &&
+          manufacture.map((manufacture) => (
+            <ManufactureItem manufacture={manufacture} key={manufacture?.id} />
           ))
         )}
       </Row>

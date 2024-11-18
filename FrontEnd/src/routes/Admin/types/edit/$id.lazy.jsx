@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { getDetailType, updateType } from "../../../service/Types";
 import Protected from "../../../components/Auth/Protected";
 
-export const Route = createLazyFileRoute('/types/edit/$id')({
+export const Route = createLazyFileRoute('/admin/types/edit/$id')({
     component: () => (
         <Protected roles={[1]}>
             <EditType />

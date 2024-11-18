@@ -10,7 +10,7 @@ import { toast } from "react-toastify";
 import { getDetailManufacture, updateManufacture } from "../../../service/Manufacture";
 import Protected from "../../../components/Auth/Protected";
 
-export const Route = createLazyFileRoute("/manufacture/edit/$id")({
+export const Route = createLazyFileRoute("/admin/manufacture/edit/$id")({
     component: () => (
         <Protected roles={[1]}>
             <EditManufacture />

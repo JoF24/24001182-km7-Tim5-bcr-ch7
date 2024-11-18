@@ -9,7 +9,7 @@ import { createFuel } from '../../service/fuel'
 import Protected from '../../components/Auth/Protected'
 import Container from 'react-bootstrap/esm/Container'
 
-export const Route = createLazyFileRoute('/fuel/create')({
+export const Route = createLazyFileRoute('/admin/fuel/create')({
   component: () => (
     <Protected roles={[1]}>
       <CreateFuel />

@@ -2,7 +2,7 @@ import { createLazyFileRoute, useNavigate } from "@tanstack/react-router";
 import { useLocation } from '@tanstack/react-router';
 import { useEffect } from 'react'
 
-export const Route = createLazyFileRoute('/types/refresh')({
+export const Route = createLazyFileRoute('/admin/types/refresh')({
   component: () => RefreshType(),
 })
 
