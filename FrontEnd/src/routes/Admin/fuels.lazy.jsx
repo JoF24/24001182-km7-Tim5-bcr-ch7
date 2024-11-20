@@ -9,7 +9,7 @@ import FuelItem from '../components/Fuel/FuelItem'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export const Route = createLazyFileRoute('/admin/fuels')({
+export const Route = createLazyFileRoute('/Admin/fuels')({
   component: Fuel,
 })
 
