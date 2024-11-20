@@ -9,7 +9,7 @@ import TransmissionItem from '../components/Transmission/TransmissionItem'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-export const Route = createLazyFileRoute('/admin/transmissions')({
+export const Route = createLazyFileRoute('/Admin/transmissions')({
   component: Transmission,
 })
 

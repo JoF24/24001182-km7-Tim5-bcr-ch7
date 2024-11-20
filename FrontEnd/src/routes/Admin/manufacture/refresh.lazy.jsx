@@ -1,25 +1,24 @@
-import { createLazyFileRoute, useNavigate } from "@tanstack/react-router";
-import { useLocation } from '@tanstack/react-router';
+import { createLazyFileRoute, useNavigate } from '@tanstack/react-router'
+import { useLocation } from '@tanstack/react-router'
 import { useEffect } from 'react'
 
-export const Route = createLazyFileRoute('/admin/manufacture/refresh')({
+export const Route = createLazyFileRoute('/Admin/manufacture/refresh')({
   component: () => RefreshManufacture(),
 })
 
+function RefreshManufacture() {
+  const navigate = useNavigate()
+  const location = useLocation()
+  useEffect(() => {
+    if (location.state?.successMessage) {
+      navigate({
+        to: '/',
+        state: { successMessage: 'Data Manufacture berhasil dihapus !!' },
+      })
+    } else {
+      navigate({ to: '/' })
+    }
+  }, [location.state])
 
-function RefreshManufacture(){
-    const navigate = useNavigate();
-    const location = useLocation();
-    useEffect(() => {
-        if (location.state?.successMessage) {
-            navigate({ 
-                to: "/",
-                state: { successMessage: "Data Manufacture berhasil dihapus !!" }
-             });
-        }else{
-            navigate({ to: "/" });
-        }
-    }, [location.state]);
-
-    return;
+  return
 }
