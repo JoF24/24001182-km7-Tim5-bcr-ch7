@@ -6,7 +6,8 @@ import Button from "react-bootstrap/Button";
 import Col from "react-bootstrap/Col";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
-import { setToken } from "../redux/slices/auth";
+import { setToken, setUser } from "../redux/slices/auth";
+import { useMutation } from "@tanstack/react-query";
 import { login } from "../service/auth";
 import Image from 'react-bootstrap/Image';
 import carImage from '../assets/carslr2.png';
@@ -20,34 +21,48 @@ function Login() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
 
-    const { token } = useSelector((state) => state.auth);
+    const { token, user } = useSelector((state) => state.auth);
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
 
     useEffect(() => {
         if (token) {
-            navigate({ to: "/" });
+            if(user?.role_id === 1){
+                navigate({ to: "/Admin/manufactures" });
+            }else if(user?.role_id === 2){
+                navigate({ to:"/"})
+            }
         }
-    }, [navigate, token]);
+    }, [navigate, token, user]);
+
+    const { mutate: loginUser } = useMutation({
+        mutationFn: (body) => {
+            return login(body);
+        },
+        onSuccess: (data) => {
+            // set token to global state
+            dispatch(setToken(data?.data.token));
+            dispatch(setUser(data?.data.users));
+
+            // redirect to home
+            if (data?.data.users.role_id === 1) {
+                navigate({to:"/Admin/manufactures"});
+            } else {
+                navigate({to:"/"});
+            }
+        },
+        onError: (err) => {
+            toast.error(err?.message);
+        },
+    });
 
     const onSubmit = async (event) => {
         event.preventDefault();
 
         const body = { email, password };
+        loginUser(body);
 
-        const result = await login(body);
-        if (result.success) {
-            dispatch(setToken(result.data.token));
-            if (result.data.users?.role_id === 1) {
-                navigate("/admin/manufactures");
-            } else {
-                navigate("/");
-            }
-            return;
-        }
-
-        alert(result.message);
     };
 
     return (

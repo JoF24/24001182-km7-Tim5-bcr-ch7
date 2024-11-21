@@ -4,16 +4,16 @@ import { useSelector } from 'react-redux'
 import { useLocation } from '@tanstack/react-router'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
-import { getManufacture } from '../service/Manufacture'
-import ManufactureItem from '../components/Manufacture/ManufactureItem'
+import { getManufacture } from '../../service/Manufacture'
+import ManufactureItem from '../../components/Manufacture/ManufactureItem'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 export const Route = createLazyFileRoute('/Admin/manufactures')({
-  component: Index,
+  component: Manufactures,
 })
 
-function Index() {
+function Manufactures() {
   const { token, user } = useSelector((state) => state.auth)
   const navigate = useNavigate()
   const location = useLocation()

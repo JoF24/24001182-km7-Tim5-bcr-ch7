@@ -12,11 +12,11 @@ function RefreshType() {
   useEffect(() => {
     if (location.state?.successMessage) {
       navigate({
-        to: '/type',
+        to: '/Admin/type',
         state: { successMessage: 'Data Type berhasil dihapus !!' },
       })
     } else {
-      navigate({ to: '/type' })
+      navigate({ to: '/Admin/type' })
     }
   }, [location.state])
 

@@ -13,11 +13,11 @@ function RefreshTransmission() {
   useEffect(() => {
     if (location.state?.successMessage) {
       navigate({
-        to: '/',
+        to: '/Admin/transmissions',
         state: { successMessage: 'Data Transmission berhasil dihapus !!' },
       })
     } else {
-      navigate({ to: '/' })
+      navigate({ to: '/Admin/transmissions' })
     }
   }, [location.state])
 

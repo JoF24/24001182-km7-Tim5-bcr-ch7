@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux'
 import { useLocation } from '@tanstack/react-router'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
-import { getFuels } from '../service/fuel'
-import FuelItem from '../components/Fuel/FuelItem'
+import { getFuels } from '../../service/fuel'
+import FuelItem from '../../components/Fuel/FuelItem'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -54,7 +54,7 @@ function Fuel() {
         {user?.role_id === 1 && (
           <>
             <div className="d-flex justify-content-end mb-3">
-              <Button as={Link} to="/fuel/create" variant="primary" size="md">
+              <Button as={Link} to="/Admin/fuel/create" variant="primary" size="md">
                 + Tambah Data
               </Button>
             </div>

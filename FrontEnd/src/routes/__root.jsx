@@ -30,7 +30,7 @@ export const Route = createRootRoute({
 
         return (
             <>
-                {isLoggedIn && user?.role_id === 1 && (
+                {isLoggedIn && (user?.role_id === 1) && (
                     <>
                         <div className={`app-container ${isSidebarOpen ? "sidebar-open" : ""}`}>
                             <TwoToneSidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />

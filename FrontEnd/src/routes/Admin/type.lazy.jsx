@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux'
 import { useLocation } from '@tanstack/react-router'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
-import { getType } from '../service/Types'
-import TypeItem from '../components/Type/TypeItem'
+import { getType } from '../../service/Types'
+import TypeItem from '../../components/Type/TypeItem'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -54,7 +54,7 @@ function Type() {
         {user?.role_id === 1 && (
           <>
             <div className="d-flex justify-content-end mb-3">
-              <Button as={Link} to="/types/create" variant="primary" size="md">
+              <Button as={Link} to="/Admin/types/create" variant="primary" size="md">
                 + Tambah Data
               </Button>
             </div>

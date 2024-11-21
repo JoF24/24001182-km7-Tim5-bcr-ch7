@@ -10,8 +10,8 @@ import { toast } from 'react-toastify'
 import {
   getDetailManufacture,
   updateManufacture,
-} from '../../../service/Manufacture'
-import Protected from '../../../components/Auth/Protected'
+} from '../../../../service/Manufacture'
+import Protected from '../../../../components/Auth/Protected'
 
 export const Route = createLazyFileRoute('/Admin/manufacture/edit/$id')({
   component: () => (
@@ -47,7 +47,7 @@ function EditManufacture() {
   }, [id])
 
   if (isNotFound) {
-    navigate({ to: '/' })
+    navigate({ to: '/Admin/manufactures' })
     return
   }
 
@@ -61,7 +61,7 @@ function EditManufacture() {
     const result = await updateManufacture(id, request)
     if (result?.success) {
       navigate({
-        to: `/`,
+        to: `/Admin/manufactures`,
         state: { successMessage: 'Data Manufacture berhasil diperbarui !!' },
       })
       return
@@ -71,7 +71,7 @@ function EditManufacture() {
   }
 
   const handleCancel = () => {
-    navigate({ to: '/' })
+    navigate({ to: '/Admin/manufactures' })
     return
   }
 
