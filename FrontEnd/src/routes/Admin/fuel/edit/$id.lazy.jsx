@@ -7,8 +7,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import { toast } from 'react-toastify'
-import { getDetailFuel, updateFuel } from '../../../service/fuel'
-import Protected from '../../../components/Auth/Protected'
+import { getDetailFuel, updateFuel } from '../../../../service/fuel'
+import Protected from '../../../../components/Auth/Protected'
 
 export const Route = createLazyFileRoute('/Admin/fuel/edit/$id')({
   component: () => (
@@ -46,7 +46,7 @@ function EditFuel() {
   }, [id])
 
   if (isNotFound) {
-    navigate({ to: '/fuels' })
+    navigate({ to: '/Admin/fuels' })
     return
   }
 
@@ -61,7 +61,7 @@ function EditFuel() {
     const result = await updateFuel(id, request)
     if (result?.success) {
       navigate({
-        to: `/fuels`,
+        to: `/Admin/fuels`,
         state: { successMessage: 'Data Fuel berhasil diperbarui !!' },
       })
       return
@@ -71,7 +71,7 @@ function EditFuel() {
   }
 
   const handleCancel = () => {
-    navigate({ to: '/fuels' })
+    navigate({ to: '/Admin/fuels' })
     return
   }
 

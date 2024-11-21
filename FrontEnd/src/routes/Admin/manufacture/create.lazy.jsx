@@ -5,8 +5,8 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { createManufacture } from '../../service/Manufacture'
-import Protected from '../../components/Auth/Protected'
+import { createManufacture } from '../../../../service/Manufacture'
+import Protected from '../../../../components/Auth/Protected'
 import Container from 'react-bootstrap/esm/Container'
 
 export const Route = createLazyFileRoute('/Admin/manufacture/create')({
@@ -34,7 +34,7 @@ function CreateManufacture() {
     const result = await createManufacture(request)
     if (result?.success) {
       navigate({
-        to: '/',
+        to: '/Admin/manufactures',
         state: { successMessage: 'Data Manufacture berhasil ditambahkan!!' },
       })
       return
@@ -44,7 +44,7 @@ function CreateManufacture() {
   }
 
   const handleCancel = () => {
-    navigate({ to: '/' })
+    navigate({ to: '/Admin/manufactures' })
     return
   }
 

@@ -10,8 +10,8 @@ import { toast } from 'react-toastify'
 import {
   getDetailTransmission,
   updateTransmission,
-} from '../../../service/transmission'
-import Protected from '../../../components/Auth/Protected'
+} from '../../../../service/transmission'
+import Protected from '../../../../components/Auth/Protected'
 
 export const Route = createLazyFileRoute('/Admin/transmission/edit/$id')({
   component: () => (
@@ -47,7 +47,7 @@ function EditTransmission() {
   }, [id])
 
   if (isNotFound) {
-    navigate({ to: '/transmissions' })
+    navigate({ to: '/Admin/transmissions' })
     return
   }
 
@@ -61,7 +61,7 @@ function EditTransmission() {
     const result = await updateTransmission(id, request)
     if (result?.success) {
       navigate({
-        to: `/transmissions`,
+        to: `/Admin/transmissions`,
         state: { successMessage: 'Data Transmission berhasil diperbarui !!' },
       })
       return
@@ -71,7 +71,7 @@ function EditTransmission() {
   }
 
   const handleCancel = () => {
-    navigate({ to: '/transmissions' })
+    navigate({ to: '/Admin/transmissions' })
     return
   }
 

@@ -7,8 +7,8 @@ import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import { toast } from 'react-toastify'
-import { getDetailType, updateType } from '../../../service/Types'
-import Protected from '../../../components/Auth/Protected'
+import { getDetailType, updateType } from '../../../../service/Types'
+import Protected from '../../../../components/Auth/Protected'
 
 export const Route = createLazyFileRoute('/Admin/types/edit/$id')({
   component: () => (
@@ -44,7 +44,7 @@ function EditType() {
   }, [id])
 
   if (isNotFound) {
-    navigate({ to: '/type' })
+    navigate({ to: '/Admin/type' })
     return
   }
 
@@ -58,7 +58,7 @@ function EditType() {
     const result = await updateType(id, request)
     if (result?.success) {
       navigate({
-        to: `/type`,
+        to: `/Admin/type`,
         state: { successMessage: 'Data Type berhasil diperbarui !!' },
       })
       return
@@ -68,7 +68,7 @@ function EditType() {
   }
 
   const handleCancel = () => {
-    navigate({ to: '/type' })
+    navigate({ to: '/Admin/type' })
     return
   }
 

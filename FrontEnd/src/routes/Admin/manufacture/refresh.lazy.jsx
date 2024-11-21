@@ -12,11 +12,11 @@ function RefreshManufacture() {
   useEffect(() => {
     if (location.state?.successMessage) {
       navigate({
-        to: '/',
+        to: '/Admin/manufactures',
         state: { successMessage: 'Data Manufacture berhasil dihapus !!' },
       })
     } else {
-      navigate({ to: '/' })
+      navigate({ to: '/Admin/manufactures' })
     }
   }, [location.state])
 

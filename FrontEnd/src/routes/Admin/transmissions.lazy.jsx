@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux'
 import { useLocation } from '@tanstack/react-router'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
-import { getTransmissions } from '../service/transmission'
-import TransmissionItem from '../components/Transmission/TransmissionItem'
+import { getTransmissions } from '../../service/transmission'
+import TransmissionItem from '../../components/Transmission/TransmissionItem'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -56,7 +56,7 @@ function Transmission() {
             <div className="d-flex justify-content-end mb-3">
               <Button
                 as={Link}
-                to="/transmission/create"
+                to="/Admin/transmission/create"
                 variant="primary"
                 size="md"
               >

@@ -14,6 +14,7 @@ import { toast } from "react-toastify";
 import deleteIcon from "../../assets/trash.png";
 import editIcon from "../../assets/edit.png";
 
+
 const ManufactureItem = ({ manufacture }) => {
     const { user } = useSelector((state) => state.auth);
     const navigate = useNavigate();

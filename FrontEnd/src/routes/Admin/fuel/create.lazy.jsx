@@ -5,8 +5,8 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { createFuel } from '../../service/fuel'
-import Protected from '../../components/Auth/Protected'
+import { createFuel } from '../../../service/fuel'
+import Protected from '../../../components/Auth/Protected'
 import Container from 'react-bootstrap/esm/Container'
 
 export const Route = createLazyFileRoute('/Admin/fuel/create')({
@@ -36,7 +36,7 @@ function CreateFuel() {
     const result = await createFuel(request)
     if (result?.success) {
       navigate({
-        to: '/fuels',
+        to: '/Admin/fuels',
         state: { successMessage: 'Data berhasil ditambahkan!' },
       })
       return
@@ -46,7 +46,7 @@ function CreateFuel() {
   }
 
   const handleCancel = () => {
-    navigate({ to: '/fuels' })
+    navigate({ to: '/Admin/fuels' })
     return
   }
 

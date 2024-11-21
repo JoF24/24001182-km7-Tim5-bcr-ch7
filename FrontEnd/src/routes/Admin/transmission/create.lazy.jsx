@@ -5,8 +5,8 @@ import Col from 'react-bootstrap/Col'
 import Card from 'react-bootstrap/Card'
 import Form from 'react-bootstrap/Form'
 import Button from 'react-bootstrap/Button'
-import { createTransmission } from '../../service/transmission'
-import Protected from '../../components/Auth/Protected'
+import { createTransmission } from '../../../service/transmission'
+import Protected from '../../../components/Auth/Protected'
 import Container from 'react-bootstrap/esm/Container'
 
 export const Route = createLazyFileRoute('/Admin/transmission/create')({
@@ -34,7 +34,7 @@ function CreateTransmission() {
     const result = await createTransmission(request)
     if (result?.success) {
       navigate({
-        to: '/transmissions',
+        to: '/Admin/transmissions',
         state: { successMessage: 'Data Transmission berhasil ditambahkan!!' },
       })
       return
@@ -44,7 +44,7 @@ function CreateTransmission() {
   }
 
   const handleCancel = () => {
-    navigate({ to: '/transmissions' })
+    navigate({ to: '/Admin/transmissions' })
     return
   }
 

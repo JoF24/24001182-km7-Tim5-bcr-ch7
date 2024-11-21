@@ -13,11 +13,11 @@ function RefreshFuel() {
   useEffect(() => {
     if (location.state?.successMessage) {
       navigate({
-        to: '/fuels',
+        to: '/Admin/fuels',
         state: { successMessage: 'Data Fuel berhasil dihapus !!' },
       })
     } else {
-      navigate({ to: '/fuels' })
+      navigate({ to: '/Admin/fuels' })
     }
   }, [location.state])
 
