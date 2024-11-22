@@ -25,6 +25,7 @@ const AdminTypeLazyImport = createFileRoute('/Admin/type')()
 const AdminTransmissionsLazyImport = createFileRoute('/Admin/transmissions')()
 const AdminManufacturesLazyImport = createFileRoute('/Admin/manufactures')()
 const AdminFuelsLazyImport = createFileRoute('/Admin/fuels')()
+const AdminCarsLazyImport = createFileRoute('/Admin/cars')()
 const AdminTypesRefreshLazyImport = createFileRoute('/Admin/types/refresh')()
 const AdminTypesCreateLazyImport = createFileRoute('/Admin/types/create')()
 const AdminTransmissionRefreshLazyImport = createFileRoute(
@@ -41,6 +42,8 @@ const AdminManufactureCreateLazyImport = createFileRoute(
 )()
 const AdminFuelRefreshLazyImport = createFileRoute('/Admin/fuel/refresh')()
 const AdminFuelCreateLazyImport = createFileRoute('/Admin/fuel/create')()
+const AdminCarRefreshLazyImport = createFileRoute('/Admin/car/refresh')()
+const AdminCarCreateLazyImport = createFileRoute('/Admin/car/create')()
 const AdminTypesEditIdLazyImport = createFileRoute('/Admin/types/edit/$id')()
 const AdminTransmissionEditIdLazyImport = createFileRoute(
   '/Admin/transmission/edit/$id',
@@ -49,6 +52,7 @@ const AdminManufactureEditIdLazyImport = createFileRoute(
   '/Admin/manufacture/edit/$id',
 )()
 const AdminFuelEditIdLazyImport = createFileRoute('/Admin/fuel/edit/$id')()
+const AdminCarEditIdLazyImport = createFileRoute('/Admin/car/edit/$id')()
 
 // Create/Update Routes
 
@@ -109,6 +113,12 @@ const AdminFuelsLazyRoute = AdminFuelsLazyImport.update({
   path: '/Admin/fuels',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/Admin/fuels.lazy').then((d) => d.Route))
+
+const AdminCarsLazyRoute = AdminCarsLazyImport.update({
+  id: '/Admin/cars',
+  path: '/Admin/cars',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/Admin/cars.lazy').then((d) => d.Route))
 
 const AdminTypesRefreshLazyRoute = AdminTypesRefreshLazyImport.update({
   id: '/Admin/types/refresh',
@@ -179,6 +189,22 @@ const AdminFuelCreateLazyRoute = AdminFuelCreateLazyImport.update({
   import('./routes/Admin/fuel/create.lazy').then((d) => d.Route),
 )
 
+const AdminCarRefreshLazyRoute = AdminCarRefreshLazyImport.update({
+  id: '/Admin/car/refresh',
+  path: '/Admin/car/refresh',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/Admin/car/refresh.lazy').then((d) => d.Route),
+)
+
+const AdminCarCreateLazyRoute = AdminCarCreateLazyImport.update({
+  id: '/Admin/car/create',
+  path: '/Admin/car/create',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/Admin/car/create.lazy').then((d) => d.Route),
+)
+
 const AdminTypesEditIdLazyRoute = AdminTypesEditIdLazyImport.update({
   id: '/Admin/types/edit/$id',
   path: '/Admin/types/edit/$id',
@@ -212,6 +238,14 @@ const AdminFuelEditIdLazyRoute = AdminFuelEditIdLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() =>
   import('./routes/Admin/fuel/edit/$id.lazy').then((d) => d.Route),
+)
+
+const AdminCarEditIdLazyRoute = AdminCarEditIdLazyImport.update({
+  id: '/Admin/car/edit/$id',
+  path: '/Admin/car/edit/$id',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/Admin/car/edit/$id.lazy').then((d) => d.Route),
 )
 
 // Populate the FileRoutesByPath interface
@@ -253,6 +287,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof RegisterLazyImport
       parentRoute: typeof rootRoute
     }
+    '/Admin/cars': {
+      id: '/Admin/cars'
+      path: '/Admin/cars'
+      fullPath: '/Admin/cars'
+      preLoaderRoute: typeof AdminCarsLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/Admin/fuels': {
       id: '/Admin/fuels'
       path: '/Admin/fuels'
@@ -279,6 +320,20 @@ declare module '@tanstack/react-router' {
       path: '/Admin/type'
       fullPath: '/Admin/type'
       preLoaderRoute: typeof AdminTypeLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/Admin/car/create': {
+      id: '/Admin/car/create'
+      path: '/Admin/car/create'
+      fullPath: '/Admin/car/create'
+      preLoaderRoute: typeof AdminCarCreateLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/Admin/car/refresh': {
+      id: '/Admin/car/refresh'
+      path: '/Admin/car/refresh'
+      fullPath: '/Admin/car/refresh'
+      preLoaderRoute: typeof AdminCarRefreshLazyImport
       parentRoute: typeof rootRoute
     }
     '/Admin/fuel/create': {
@@ -337,6 +392,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof AdminTypesRefreshLazyImport
       parentRoute: typeof rootRoute
     }
+    '/Admin/car/edit/$id': {
+      id: '/Admin/car/edit/$id'
+      path: '/Admin/car/edit/$id'
+      fullPath: '/Admin/car/edit/$id'
+      preLoaderRoute: typeof AdminCarEditIdLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/Admin/fuel/edit/$id': {
       id: '/Admin/fuel/edit/$id'
       path: '/Admin/fuel/edit/$id'
@@ -376,10 +438,13 @@ export interface FileRoutesByFullPath {
   '/login': typeof LoginLazyRoute
   '/profile': typeof ProfileLazyRoute
   '/register': typeof RegisterLazyRoute
+  '/Admin/cars': typeof AdminCarsLazyRoute
   '/Admin/fuels': typeof AdminFuelsLazyRoute
   '/Admin/manufactures': typeof AdminManufacturesLazyRoute
   '/Admin/transmissions': typeof AdminTransmissionsLazyRoute
   '/Admin/type': typeof AdminTypeLazyRoute
+  '/Admin/car/create': typeof AdminCarCreateLazyRoute
+  '/Admin/car/refresh': typeof AdminCarRefreshLazyRoute
   '/Admin/fuel/create': typeof AdminFuelCreateLazyRoute
   '/Admin/fuel/refresh': typeof AdminFuelRefreshLazyRoute
   '/Admin/manufacture/create': typeof AdminManufactureCreateLazyRoute
@@ -388,6 +453,7 @@ export interface FileRoutesByFullPath {
   '/Admin/transmission/refresh': typeof AdminTransmissionRefreshLazyRoute
   '/Admin/types/create': typeof AdminTypesCreateLazyRoute
   '/Admin/types/refresh': typeof AdminTypesRefreshLazyRoute
+  '/Admin/car/edit/$id': typeof AdminCarEditIdLazyRoute
   '/Admin/fuel/edit/$id': typeof AdminFuelEditIdLazyRoute
   '/Admin/manufacture/edit/$id': typeof AdminManufactureEditIdLazyRoute
   '/Admin/transmission/edit/$id': typeof AdminTransmissionEditIdLazyRoute
@@ -400,10 +466,13 @@ export interface FileRoutesByTo {
   '/login': typeof LoginLazyRoute
   '/profile': typeof ProfileLazyRoute
   '/register': typeof RegisterLazyRoute
+  '/Admin/cars': typeof AdminCarsLazyRoute
   '/Admin/fuels': typeof AdminFuelsLazyRoute
   '/Admin/manufactures': typeof AdminManufacturesLazyRoute
   '/Admin/transmissions': typeof AdminTransmissionsLazyRoute
   '/Admin/type': typeof AdminTypeLazyRoute
+  '/Admin/car/create': typeof AdminCarCreateLazyRoute
+  '/Admin/car/refresh': typeof AdminCarRefreshLazyRoute
   '/Admin/fuel/create': typeof AdminFuelCreateLazyRoute
   '/Admin/fuel/refresh': typeof AdminFuelRefreshLazyRoute
   '/Admin/manufacture/create': typeof AdminManufactureCreateLazyRoute
@@ -412,6 +481,7 @@ export interface FileRoutesByTo {
   '/Admin/transmission/refresh': typeof AdminTransmissionRefreshLazyRoute
   '/Admin/types/create': typeof AdminTypesCreateLazyRoute
   '/Admin/types/refresh': typeof AdminTypesRefreshLazyRoute
+  '/Admin/car/edit/$id': typeof AdminCarEditIdLazyRoute
   '/Admin/fuel/edit/$id': typeof AdminFuelEditIdLazyRoute
   '/Admin/manufacture/edit/$id': typeof AdminManufactureEditIdLazyRoute
   '/Admin/transmission/edit/$id': typeof AdminTransmissionEditIdLazyRoute
@@ -425,10 +495,13 @@ export interface FileRoutesById {
   '/login': typeof LoginLazyRoute
   '/profile': typeof ProfileLazyRoute
   '/register': typeof RegisterLazyRoute
+  '/Admin/cars': typeof AdminCarsLazyRoute
   '/Admin/fuels': typeof AdminFuelsLazyRoute
   '/Admin/manufactures': typeof AdminManufacturesLazyRoute
   '/Admin/transmissions': typeof AdminTransmissionsLazyRoute
   '/Admin/type': typeof AdminTypeLazyRoute
+  '/Admin/car/create': typeof AdminCarCreateLazyRoute
+  '/Admin/car/refresh': typeof AdminCarRefreshLazyRoute
   '/Admin/fuel/create': typeof AdminFuelCreateLazyRoute
   '/Admin/fuel/refresh': typeof AdminFuelRefreshLazyRoute
   '/Admin/manufacture/create': typeof AdminManufactureCreateLazyRoute
@@ -437,6 +510,7 @@ export interface FileRoutesById {
   '/Admin/transmission/refresh': typeof AdminTransmissionRefreshLazyRoute
   '/Admin/types/create': typeof AdminTypesCreateLazyRoute
   '/Admin/types/refresh': typeof AdminTypesRefreshLazyRoute
+  '/Admin/car/edit/$id': typeof AdminCarEditIdLazyRoute
   '/Admin/fuel/edit/$id': typeof AdminFuelEditIdLazyRoute
   '/Admin/manufacture/edit/$id': typeof AdminManufactureEditIdLazyRoute
   '/Admin/transmission/edit/$id': typeof AdminTransmissionEditIdLazyRoute
@@ -451,10 +525,13 @@ export interface FileRouteTypes {
     | '/login'
     | '/profile'
     | '/register'
+    | '/Admin/cars'
     | '/Admin/fuels'
     | '/Admin/manufactures'
     | '/Admin/transmissions'
     | '/Admin/type'
+    | '/Admin/car/create'
+    | '/Admin/car/refresh'
     | '/Admin/fuel/create'
     | '/Admin/fuel/refresh'
     | '/Admin/manufacture/create'
@@ -463,6 +540,7 @@ export interface FileRouteTypes {
     | '/Admin/transmission/refresh'
     | '/Admin/types/create'
     | '/Admin/types/refresh'
+    | '/Admin/car/edit/$id'
     | '/Admin/fuel/edit/$id'
     | '/Admin/manufacture/edit/$id'
     | '/Admin/transmission/edit/$id'
@@ -474,10 +552,13 @@ export interface FileRouteTypes {
     | '/login'
     | '/profile'
     | '/register'
+    | '/Admin/cars'
     | '/Admin/fuels'
     | '/Admin/manufactures'
     | '/Admin/transmissions'
     | '/Admin/type'
+    | '/Admin/car/create'
+    | '/Admin/car/refresh'
     | '/Admin/fuel/create'
     | '/Admin/fuel/refresh'
     | '/Admin/manufacture/create'
@@ -486,6 +567,7 @@ export interface FileRouteTypes {
     | '/Admin/transmission/refresh'
     | '/Admin/types/create'
     | '/Admin/types/refresh'
+    | '/Admin/car/edit/$id'
     | '/Admin/fuel/edit/$id'
     | '/Admin/manufacture/edit/$id'
     | '/Admin/transmission/edit/$id'
@@ -497,10 +579,13 @@ export interface FileRouteTypes {
     | '/login'
     | '/profile'
     | '/register'
+    | '/Admin/cars'
     | '/Admin/fuels'
     | '/Admin/manufactures'
     | '/Admin/transmissions'
     | '/Admin/type'
+    | '/Admin/car/create'
+    | '/Admin/car/refresh'
     | '/Admin/fuel/create'
     | '/Admin/fuel/refresh'
     | '/Admin/manufacture/create'
@@ -509,6 +594,7 @@ export interface FileRouteTypes {
     | '/Admin/transmission/refresh'
     | '/Admin/types/create'
     | '/Admin/types/refresh'
+    | '/Admin/car/edit/$id'
     | '/Admin/fuel/edit/$id'
     | '/Admin/manufacture/edit/$id'
     | '/Admin/transmission/edit/$id'
@@ -522,10 +608,13 @@ export interface RootRouteChildren {
   LoginLazyRoute: typeof LoginLazyRoute
   ProfileLazyRoute: typeof ProfileLazyRoute
   RegisterLazyRoute: typeof RegisterLazyRoute
+  AdminCarsLazyRoute: typeof AdminCarsLazyRoute
   AdminFuelsLazyRoute: typeof AdminFuelsLazyRoute
   AdminManufacturesLazyRoute: typeof AdminManufacturesLazyRoute
   AdminTransmissionsLazyRoute: typeof AdminTransmissionsLazyRoute
   AdminTypeLazyRoute: typeof AdminTypeLazyRoute
+  AdminCarCreateLazyRoute: typeof AdminCarCreateLazyRoute
+  AdminCarRefreshLazyRoute: typeof AdminCarRefreshLazyRoute
   AdminFuelCreateLazyRoute: typeof AdminFuelCreateLazyRoute
   AdminFuelRefreshLazyRoute: typeof AdminFuelRefreshLazyRoute
   AdminManufactureCreateLazyRoute: typeof AdminManufactureCreateLazyRoute
@@ -534,6 +623,7 @@ export interface RootRouteChildren {
   AdminTransmissionRefreshLazyRoute: typeof AdminTransmissionRefreshLazyRoute
   AdminTypesCreateLazyRoute: typeof AdminTypesCreateLazyRoute
   AdminTypesRefreshLazyRoute: typeof AdminTypesRefreshLazyRoute
+  AdminCarEditIdLazyRoute: typeof AdminCarEditIdLazyRoute
   AdminFuelEditIdLazyRoute: typeof AdminFuelEditIdLazyRoute
   AdminManufactureEditIdLazyRoute: typeof AdminManufactureEditIdLazyRoute
   AdminTransmissionEditIdLazyRoute: typeof AdminTransmissionEditIdLazyRoute
@@ -546,10 +636,13 @@ const rootRouteChildren: RootRouteChildren = {
   LoginLazyRoute: LoginLazyRoute,
   ProfileLazyRoute: ProfileLazyRoute,
   RegisterLazyRoute: RegisterLazyRoute,
+  AdminCarsLazyRoute: AdminCarsLazyRoute,
   AdminFuelsLazyRoute: AdminFuelsLazyRoute,
   AdminManufacturesLazyRoute: AdminManufacturesLazyRoute,
   AdminTransmissionsLazyRoute: AdminTransmissionsLazyRoute,
   AdminTypeLazyRoute: AdminTypeLazyRoute,
+  AdminCarCreateLazyRoute: AdminCarCreateLazyRoute,
+  AdminCarRefreshLazyRoute: AdminCarRefreshLazyRoute,
   AdminFuelCreateLazyRoute: AdminFuelCreateLazyRoute,
   AdminFuelRefreshLazyRoute: AdminFuelRefreshLazyRoute,
   AdminManufactureCreateLazyRoute: AdminManufactureCreateLazyRoute,
@@ -558,6 +651,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminTransmissionRefreshLazyRoute: AdminTransmissionRefreshLazyRoute,
   AdminTypesCreateLazyRoute: AdminTypesCreateLazyRoute,
   AdminTypesRefreshLazyRoute: AdminTypesRefreshLazyRoute,
+  AdminCarEditIdLazyRoute: AdminCarEditIdLazyRoute,
   AdminFuelEditIdLazyRoute: AdminFuelEditIdLazyRoute,
   AdminManufactureEditIdLazyRoute: AdminManufactureEditIdLazyRoute,
   AdminTransmissionEditIdLazyRoute: AdminTransmissionEditIdLazyRoute,
@@ -581,10 +675,13 @@ export const routeTree = rootRoute
         "/login",
         "/profile",
         "/register",
+        "/Admin/cars",
         "/Admin/fuels",
         "/Admin/manufactures",
         "/Admin/transmissions",
         "/Admin/type",
+        "/Admin/car/create",
+        "/Admin/car/refresh",
         "/Admin/fuel/create",
         "/Admin/fuel/refresh",
         "/Admin/manufacture/create",
@@ -593,6 +690,7 @@ export const routeTree = rootRoute
         "/Admin/transmission/refresh",
         "/Admin/types/create",
         "/Admin/types/refresh",
+        "/Admin/car/edit/$id",
         "/Admin/fuel/edit/$id",
         "/Admin/manufacture/edit/$id",
         "/Admin/transmission/edit/$id",
@@ -614,6 +712,9 @@ export const routeTree = rootRoute
     "/register": {
       "filePath": "register.lazy.jsx"
     },
+    "/Admin/cars": {
+      "filePath": "Admin/cars.lazy.jsx"
+    },
     "/Admin/fuels": {
       "filePath": "Admin/fuels.lazy.jsx"
     },
@@ -625,6 +726,12 @@ export const routeTree = rootRoute
     },
     "/Admin/type": {
       "filePath": "Admin/type.lazy.jsx"
+    },
+    "/Admin/car/create": {
+      "filePath": "Admin/car/create.lazy.jsx"
+    },
+    "/Admin/car/refresh": {
+      "filePath": "Admin/car/refresh.lazy.jsx"
     },
     "/Admin/fuel/create": {
       "filePath": "Admin/fuel/create.lazy.jsx"
@@ -649,6 +756,9 @@ export const routeTree = rootRoute
     },
     "/Admin/types/refresh": {
       "filePath": "Admin/types/refresh.lazy.jsx"
+    },
+    "/Admin/car/edit/$id": {
+      "filePath": "Admin/car/edit/$id.lazy.jsx"
     },
     "/Admin/fuel/edit/$id": {
       "filePath": "Admin/fuel/edit/$id.lazy.jsx"
