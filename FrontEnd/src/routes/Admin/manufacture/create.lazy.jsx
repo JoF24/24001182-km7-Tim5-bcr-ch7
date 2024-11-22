@@ -41,8 +41,8 @@ function CreateManufacture() {
       return
     }
 
-    alert(result?.message)
-  }
+        alert(result?.message);
+    };
 
   const handleCancel = () => {
     navigate({ to: '/Admin/manufactures' })

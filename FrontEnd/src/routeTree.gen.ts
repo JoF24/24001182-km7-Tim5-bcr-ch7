@@ -445,9 +445,6 @@ export interface FileRoutesByFullPath {
   '/Admin/type': typeof AdminTypeLazyRoute
   '/Admin/car/create': typeof AdminCarCreateLazyRoute
   '/Admin/car/refresh': typeof AdminCarRefreshLazyRoute
-  '/Admin/fuel/create': typeof AdminFuelCreateLazyRoute
-  '/Admin/fuel/refresh': typeof AdminFuelRefreshLazyRoute
-  '/Admin/manufacture/create': typeof AdminManufactureCreateLazyRoute
   '/Admin/manufacture/refresh': typeof AdminManufactureRefreshLazyRoute
   '/Admin/transmission/create': typeof AdminTransmissionCreateLazyRoute
   '/Admin/transmission/refresh': typeof AdminTransmissionRefreshLazyRoute
