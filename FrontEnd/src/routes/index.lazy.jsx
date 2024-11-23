@@ -124,7 +124,7 @@ function Index() {
                 terbaik dengan harga terjangkau. Selalu siap melayani kebutuhanmu
                 untuk sewa mobil selama 24 jam.
               </p>
-              <a href="carimobil.html" className="btn text-white">Mulai Sewa Mobil</a>
+              <a href="/cariMobil" className="btn text-white">Mulai Sewa Mobil</a>
             </div>
           </div>
           <div className="col-md-6">
@@ -284,7 +284,7 @@ function Index() {
               <div className="d-flex align-items-center flex-column" style={{width: "80%"}}>
                   <h3 className="text-white judul-section6 text-center">Sewa Mobil di Jember Sekarang</h3>
                   <p className="text-white" style={{textAlign: "center"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente veniam minima doloremque ipsa nam. Reprehenderit, dolore explicabo repudiandae, cupiditate quam repellat officia corrupti ad dicta eaque, sed velit exercitationem vero!</p>
-                  <a href="carimobil.html" className="btn btn-section6 text-white">Mulai Sewa Mobil</a>
+                  <a href="/cariMobil" className="btn btn-section6 text-white">Mulai Sewa Mobil</a>
               </div>
           </div>
       </div>
