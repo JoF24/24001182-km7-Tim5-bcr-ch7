@@ -32,7 +32,7 @@ const ManufactureItem = ({ manufacture }) => {
                         const result = await deleteManufacture(manufacture.id);
                         if (result?.success) {
                             navigate({ 
-                                to: "manufacture/refresh",
+                                to: "/Admin/manufacture/refresh",
                                 state: { successMessage: "Data Manufacture berhasil dihapus." }
                             });
                         }
@@ -80,7 +80,7 @@ const ManufactureItem = ({ manufacture }) => {
                                             <div className="d-grid gap-2">
                                                 <Button
                                                     as={Link}
-                                                    href={`/manufacture/edit/${manufacture?.id}`}
+                                                    href={`/Admin/manufacture/edit/${manufacture?.id}`}
                                                     variant="success"
                                                     size="md"
                                                 >

@@ -31,7 +31,7 @@ const CarsItem = ({ cars }) => {
                         const result = await deleteCars(cars.id);
                         if (result?.success) {
                             navigate({ 
-                                to: "cars/refresh",
+                                to: "/Admin/cars/refresh",
                                 state: { successMessage: "Data Car berhasil dihapus." }
                             });
                         }
@@ -91,7 +91,7 @@ const CarsItem = ({ cars }) => {
                                             <div className="d-grid gap-2">
                                                 <Button
                                                     as={Link}
-                                                    href={`/car/edit/${cars?.id}`}
+                                                    href={`/Admin/car/edit/${cars?.id}`}
                                                     variant="success"
                                                     size="md"
                                                 >

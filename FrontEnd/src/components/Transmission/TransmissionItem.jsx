@@ -33,7 +33,7 @@ const TransmissionItem = ({ transmission }) => {
                         const result = await deleteTransmission(transmission.id);
                         if (result?.success) {
                             navigate({ 
-                                to: "/transmission/refresh",
+                                to: "/Admin/transmission/refresh",
                                 state: { successMessage: "Data Transmission berhasil dihapus." }
                             });
                         }
@@ -81,7 +81,7 @@ const TransmissionItem = ({ transmission }) => {
                                             <div className="d-grid gap-2">
                                                 <Button
                                                     as={Link}
-                                                    href={`/transmission/edit/${transmission?.id}`}
+                                                    href={`/Admin/transmission/edit/${transmission?.id}`}
                                                     variant="success"
                                                     size="md"
                                                 >

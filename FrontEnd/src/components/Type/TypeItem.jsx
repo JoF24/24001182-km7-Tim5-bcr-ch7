@@ -31,7 +31,7 @@ const TypeItem = ({ type }) => {
                         const result = await deleteType(type.id);
                         if (result?.success) {
                             navigate({ 
-                                to: "/types/refresh",
+                                to: "/Admin/types/refresh",
                                 state: { successMessage: "Data Type berhasil dihapus." }
                             });
                         }
@@ -79,7 +79,7 @@ const TypeItem = ({ type }) => {
                                             <div className="d-grid gap-2">
                                                 <Button
                                                     as={Link}
-                                                    href={`/types/edit/${type?.id}`}
+                                                    href={`/Admin/types/edit/${type?.id}`}
                                                     variant="success"
                                                     size="md"
                                                 >
