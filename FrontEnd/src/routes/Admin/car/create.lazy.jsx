@@ -109,7 +109,7 @@ function CreateCars() {
     const result = await createCars(request)
     if (result?.success) {
       navigate({
-        to: '/cars',
+        to: '/Admin/cars',
         state: { successMessage: 'Data Car berhasil ditambahkan!!' },
       })
       return
@@ -119,7 +119,7 @@ function CreateCars() {
   }
 
   const handleCancel = () => {
-    navigate({ to: '/cars' })
+    navigate({ to: '/Admin/cars' })
     return
   }
 
@@ -244,12 +244,12 @@ function CreateCars() {
                 </Form.Label>
                 <Col sm="9">
                   <Form.Control
-                    type="string"
-                    placeholder="Input Available At"
+                    type="date" // Mengubah tipe menjadi date
+                    placeholder="Select Available At" // Placeholder otomatis digantikan oleh UI date picker, tetapi bisa ditulis untuk fallback
                     required
                     value={availableAt}
                     onChange={(event) => {
-                      setAvailableAt(event.target.value)
+                      setAvailableAt(event.target.value); // Mengambil nilai dalam format YYYY-MM-DD
                     }}
                   />
                 </Col>

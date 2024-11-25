@@ -109,7 +109,7 @@ function EditCars() {
   }, [id])
 
   if (isNotFound) {
-    navigate({ to: '/cars' })
+    navigate({ to: '/Admin/cars' })
     return
   }
 
@@ -136,7 +136,7 @@ function EditCars() {
     const result = await updateCars(id, request)
     if (result?.success) {
       navigate({
-        to: `/cars`,
+        to: `/Admin/cars`,
         state: { successMessage: 'Data Car berhasil diperbarui !!' },
       })
       return
@@ -146,7 +146,7 @@ function EditCars() {
   }
 
   const handleCancel = () => {
-    navigate({ to: '/cars' })
+    navigate({ to: '/Admin/cars' })
     return
   }
 
@@ -279,12 +279,12 @@ function EditCars() {
                 </Form.Label>
                 <Col sm="9">
                   <Form.Control
-                    type="string"
-                    placeholder="Input Available At"
+                    type="date"
+                    placeholder="Select Available At"
                     required
-                    value={availableAt}
+                    value={availableAt ? new Date(availableAt).toISOString().split("T")[0] : ""}
                     onChange={(event) => {
-                      setAvailableAt(event.target.value)
+                      setAvailableAt(event.target.value);
                     }}
                   />
                 </Col>

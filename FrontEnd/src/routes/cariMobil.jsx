@@ -39,22 +39,14 @@ function CariMobil() {
       const carCapacity = parseInt(car.capacity, 10);
       const selectedCapacity = parseInt(capacity, 10);
       
-      const carDate = new Date(car.availableAt);
-      const selectedDate = new Date(date);
+      const carDate = car.availableAt ? new Date(car.availableAt).toISOString().split("T")[0] : "";
+      const selectedDate = date;
       
-      const isDateMatch = carDate.toDateString() === selectedDate.toDateString();
-      const isCapacityMatch = carCapacity >= selectedCapacity;
-
-      console.log(`Car Date: ${carDate.toDateString()}, Selected Date: ${selectedDate.toDateString()}`);
-      console.log(`Car Capacity: ${carCapacity}, Selected Capacity: ${selectedCapacity}`);
-      console.log(`isDateMatch: ${isDateMatch}, isCapacityMatch: ${isCapacityMatch}`);
+      const isDateMatch = (carDate === selectedDate);
+      const isCapacityMatch = (carCapacity >= selectedCapacity);
 
       return isDateMatch && isCapacityMatch;
     });
-
-    if (filteredCars.length === 0) {
-      console.warn("Car data is not found!");
-    }
 
     setCars(filteredCars);
   };
@@ -95,21 +87,6 @@ function CariMobil() {
                 Selamat datang di Binar Car Rental. Kami menyediakan mobil kualitas terbaik dengan harga
                 terjangkau. Selalu siap melayani kebutuhanmu untuk sewa mobil selama 24 jam.
               </p>
-              <div style={{ alignSelf: 'flex-start', marginTop: '10px' }}>
-                <button
-                  type="submit"
-                  style={{
-                    backgroundColor: '#60bc5c',
-                    fontSize: '14px',
-                    color: 'white',
-                    border: 'none',
-                    borderRadius: '5px',
-                    height: '30px',
-                  }}
-                >
-                  <b>Mulai Sewa Mobil</b>
-                </button>
-              </div>
             </Col>
             <Col>
               <Image src={imageCar} alt="Car" fluid />

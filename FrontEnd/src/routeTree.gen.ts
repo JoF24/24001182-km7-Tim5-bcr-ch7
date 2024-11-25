@@ -20,7 +20,9 @@ import { Route as CariMobilImport } from './routes/cariMobil'
 const RegisterLazyImport = createFileRoute('/register')()
 const ProfileLazyImport = createFileRoute('/profile')()
 const LoginLazyImport = createFileRoute('/login')()
+const LandingpageLazyImport = createFileRoute('/landingpage')()
 const IndexLazyImport = createFileRoute('/')()
+const DetailcarsIdLazyImport = createFileRoute('/detailcars/$id')()
 const AdminTypeLazyImport = createFileRoute('/Admin/type')()
 const AdminTransmissionsLazyImport = createFileRoute('/Admin/transmissions')()
 const AdminModelsLazyImport = createFileRoute('/Admin/models')()
@@ -78,6 +80,12 @@ const LoginLazyRoute = LoginLazyImport.update({
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/login.lazy').then((d) => d.Route))
 
+const LandingpageLazyRoute = LandingpageLazyImport.update({
+  id: '/landingpage',
+  path: '/landingpage',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() => import('./routes/landingpage.lazy').then((d) => d.Route))
+
 const CariMobilRoute = CariMobilImport.update({
   id: '/cariMobil',
   path: '/cariMobil',
@@ -89,6 +97,14 @@ const IndexLazyRoute = IndexLazyImport.update({
   path: '/',
   getParentRoute: () => rootRoute,
 } as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+
+const DetailcarsIdLazyRoute = DetailcarsIdLazyImport.update({
+  id: '/detailcars/$id',
+  path: '/detailcars/$id',
+  getParentRoute: () => rootRoute,
+} as any).lazy(() =>
+  import('./routes/detailcars/$id.lazy').then((d) => d.Route),
+)
 
 const AdminTypeLazyRoute = AdminTypeLazyImport.update({
   id: '/Admin/type',
@@ -300,6 +316,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof CariMobilImport
       parentRoute: typeof rootRoute
     }
+    '/landingpage': {
+      id: '/landingpage'
+      path: '/landingpage'
+      fullPath: '/landingpage'
+      preLoaderRoute: typeof LandingpageLazyImport
+      parentRoute: typeof rootRoute
+    }
     '/login': {
       id: '/login'
       path: '/login'
@@ -361,6 +384,13 @@ declare module '@tanstack/react-router' {
       path: '/Admin/type'
       fullPath: '/Admin/type'
       preLoaderRoute: typeof AdminTypeLazyImport
+      parentRoute: typeof rootRoute
+    }
+    '/detailcars/$id': {
+      id: '/detailcars/$id'
+      path: '/detailcars/$id'
+      fullPath: '/detailcars/$id'
+      preLoaderRoute: typeof DetailcarsIdLazyImport
       parentRoute: typeof rootRoute
     }
     '/Admin/car/create': {
@@ -497,6 +527,7 @@ declare module '@tanstack/react-router' {
 export interface FileRoutesByFullPath {
   '/': typeof IndexLazyRoute
   '/cariMobil': typeof CariMobilRoute
+  '/landingpage': typeof LandingpageLazyRoute
   '/login': typeof LoginLazyRoute
   '/profile': typeof ProfileLazyRoute
   '/register': typeof RegisterLazyRoute
@@ -506,6 +537,7 @@ export interface FileRoutesByFullPath {
   '/Admin/models': typeof AdminModelsLazyRoute
   '/Admin/transmissions': typeof AdminTransmissionsLazyRoute
   '/Admin/type': typeof AdminTypeLazyRoute
+  '/detailcars/$id': typeof DetailcarsIdLazyRoute
   '/Admin/car/create': typeof AdminCarCreateLazyRoute
   '/Admin/car/refresh': typeof AdminCarRefreshLazyRoute
   '/Admin/fuel/create': typeof AdminFuelCreateLazyRoute
@@ -529,6 +561,7 @@ export interface FileRoutesByFullPath {
 export interface FileRoutesByTo {
   '/': typeof IndexLazyRoute
   '/cariMobil': typeof CariMobilRoute
+  '/landingpage': typeof LandingpageLazyRoute
   '/login': typeof LoginLazyRoute
   '/profile': typeof ProfileLazyRoute
   '/register': typeof RegisterLazyRoute
@@ -538,6 +571,7 @@ export interface FileRoutesByTo {
   '/Admin/models': typeof AdminModelsLazyRoute
   '/Admin/transmissions': typeof AdminTransmissionsLazyRoute
   '/Admin/type': typeof AdminTypeLazyRoute
+  '/detailcars/$id': typeof DetailcarsIdLazyRoute
   '/Admin/car/create': typeof AdminCarCreateLazyRoute
   '/Admin/car/refresh': typeof AdminCarRefreshLazyRoute
   '/Admin/fuel/create': typeof AdminFuelCreateLazyRoute
@@ -562,6 +596,7 @@ export interface FileRoutesById {
   __root__: typeof rootRoute
   '/': typeof IndexLazyRoute
   '/cariMobil': typeof CariMobilRoute
+  '/landingpage': typeof LandingpageLazyRoute
   '/login': typeof LoginLazyRoute
   '/profile': typeof ProfileLazyRoute
   '/register': typeof RegisterLazyRoute
@@ -571,6 +606,7 @@ export interface FileRoutesById {
   '/Admin/models': typeof AdminModelsLazyRoute
   '/Admin/transmissions': typeof AdminTransmissionsLazyRoute
   '/Admin/type': typeof AdminTypeLazyRoute
+  '/detailcars/$id': typeof DetailcarsIdLazyRoute
   '/Admin/car/create': typeof AdminCarCreateLazyRoute
   '/Admin/car/refresh': typeof AdminCarRefreshLazyRoute
   '/Admin/fuel/create': typeof AdminFuelCreateLazyRoute
@@ -596,6 +632,7 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/cariMobil'
+    | '/landingpage'
     | '/login'
     | '/profile'
     | '/register'
@@ -605,6 +642,7 @@ export interface FileRouteTypes {
     | '/Admin/models'
     | '/Admin/transmissions'
     | '/Admin/type'
+    | '/detailcars/$id'
     | '/Admin/car/create'
     | '/Admin/car/refresh'
     | '/Admin/fuel/create'
@@ -627,6 +665,7 @@ export interface FileRouteTypes {
   to:
     | '/'
     | '/cariMobil'
+    | '/landingpage'
     | '/login'
     | '/profile'
     | '/register'
@@ -636,6 +675,7 @@ export interface FileRouteTypes {
     | '/Admin/models'
     | '/Admin/transmissions'
     | '/Admin/type'
+    | '/detailcars/$id'
     | '/Admin/car/create'
     | '/Admin/car/refresh'
     | '/Admin/fuel/create'
@@ -658,6 +698,7 @@ export interface FileRouteTypes {
     | '__root__'
     | '/'
     | '/cariMobil'
+    | '/landingpage'
     | '/login'
     | '/profile'
     | '/register'
@@ -667,6 +708,7 @@ export interface FileRouteTypes {
     | '/Admin/models'
     | '/Admin/transmissions'
     | '/Admin/type'
+    | '/detailcars/$id'
     | '/Admin/car/create'
     | '/Admin/car/refresh'
     | '/Admin/fuel/create'
@@ -691,6 +733,7 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexLazyRoute: typeof IndexLazyRoute
   CariMobilRoute: typeof CariMobilRoute
+  LandingpageLazyRoute: typeof LandingpageLazyRoute
   LoginLazyRoute: typeof LoginLazyRoute
   ProfileLazyRoute: typeof ProfileLazyRoute
   RegisterLazyRoute: typeof RegisterLazyRoute
@@ -700,6 +743,7 @@ export interface RootRouteChildren {
   AdminModelsLazyRoute: typeof AdminModelsLazyRoute
   AdminTransmissionsLazyRoute: typeof AdminTransmissionsLazyRoute
   AdminTypeLazyRoute: typeof AdminTypeLazyRoute
+  DetailcarsIdLazyRoute: typeof DetailcarsIdLazyRoute
   AdminCarCreateLazyRoute: typeof AdminCarCreateLazyRoute
   AdminCarRefreshLazyRoute: typeof AdminCarRefreshLazyRoute
   AdminFuelCreateLazyRoute: typeof AdminFuelCreateLazyRoute
@@ -723,6 +767,7 @@ export interface RootRouteChildren {
 const rootRouteChildren: RootRouteChildren = {
   IndexLazyRoute: IndexLazyRoute,
   CariMobilRoute: CariMobilRoute,
+  LandingpageLazyRoute: LandingpageLazyRoute,
   LoginLazyRoute: LoginLazyRoute,
   ProfileLazyRoute: ProfileLazyRoute,
   RegisterLazyRoute: RegisterLazyRoute,
@@ -732,6 +777,7 @@ const rootRouteChildren: RootRouteChildren = {
   AdminModelsLazyRoute: AdminModelsLazyRoute,
   AdminTransmissionsLazyRoute: AdminTransmissionsLazyRoute,
   AdminTypeLazyRoute: AdminTypeLazyRoute,
+  DetailcarsIdLazyRoute: DetailcarsIdLazyRoute,
   AdminCarCreateLazyRoute: AdminCarCreateLazyRoute,
   AdminCarRefreshLazyRoute: AdminCarRefreshLazyRoute,
   AdminFuelCreateLazyRoute: AdminFuelCreateLazyRoute,
@@ -766,6 +812,7 @@ export const routeTree = rootRoute
       "children": [
         "/",
         "/cariMobil",
+        "/landingpage",
         "/login",
         "/profile",
         "/register",
@@ -775,6 +822,7 @@ export const routeTree = rootRoute
         "/Admin/models",
         "/Admin/transmissions",
         "/Admin/type",
+        "/detailcars/$id",
         "/Admin/car/create",
         "/Admin/car/refresh",
         "/Admin/fuel/create",
@@ -800,6 +848,9 @@ export const routeTree = rootRoute
     },
     "/cariMobil": {
       "filePath": "cariMobil.jsx"
+    },
+    "/landingpage": {
+      "filePath": "landingpage.lazy.jsx"
     },
     "/login": {
       "filePath": "login.lazy.jsx"
@@ -827,6 +878,9 @@ export const routeTree = rootRoute
     },
     "/Admin/type": {
       "filePath": "Admin/type.lazy.jsx"
+    },
+    "/detailcars/$id": {
+      "filePath": "detailcars/$id.lazy.jsx"
     },
     "/Admin/car/create": {
       "filePath": "Admin/car/create.lazy.jsx"
