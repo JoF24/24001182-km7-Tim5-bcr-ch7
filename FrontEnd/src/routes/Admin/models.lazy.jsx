@@ -10,10 +10,10 @@ import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 export const Route = createLazyFileRoute('/Admin/models')({
-  component: Index,
+  component: Models,
 })
 
-function Index() {
+function Models() {
   const { token, user } = useSelector((state) => state.auth)
   const navigate = useNavigate()
   const location = useLocation()
