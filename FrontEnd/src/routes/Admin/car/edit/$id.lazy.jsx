@@ -8,14 +8,14 @@ import Button from 'react-bootstrap/Button'
 import Container from 'react-bootstrap/Container'
 import Image from 'react-bootstrap/Image'
 import { toast } from 'react-toastify'
-import { getTransmissions } from '../../../service/transmission'
-import { getModel } from '../../../service/model'
-import { getFuels } from '../../../service/fuel'
-import { getType } from '../../../service/Types'
-import { getManufacture } from '../../../service/Manufacture'
+import { getTransmissions } from '../../../../service/transmission'
+import { getModel } from '../../../../service/model'
+import { getFuels } from '../../../../service/fuel'
+import { getType } from '../../../../service/Types'
+import { getManufacture } from '../../../../service/Manufacture'
 
-import { getDetailCars, updateCars } from '../../../service/car'
-import Protected from '../../../components/Auth/Protected'
+import { getDetailCars, updateCars } from '../../../../service/car'
+import Protected from '../../../../components/Auth/Protected'
 
 export const Route = createLazyFileRoute('/Admin/car/edit/$id')({
   component: () => (
