@@ -1,3 +1,4 @@
+import {Link} from '@tanstack/react-router'
 import Col from "react-bootstrap/Col";
 import Card from "react-bootstrap/Card";
 import Button from "react-bootstrap/Button";
@@ -83,6 +84,8 @@ const CarsItem2 = ({ cars }) => {
                     </div>
                     <Button 
                         className="btn btn-success w-100 mt-4" 
+                        as={Link}
+                        href={`/detailcars/${cars?.id}`}
                         style={{
                             backgroundColor: "#5CB85F",
                             border: "none",

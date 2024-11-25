@@ -21,13 +21,14 @@ import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 import "bootstrap/dist/css/bootstrap.min.css";
 import "react-toastify/dist/ReactToastify.css";
 import "./landingpage.css"
+import { profile } from "../service/auth";
 import Button from "react-bootstrap/esm/Button";
 
-export const Route = createLazyFileRoute('/')({
-  component: Index,
+export const Route = createLazyFileRoute('/landingpage')({
+  component: LandingPage,
 })
 
-function Index() {
+function LandingPage() {
   const { token, user } = useSelector((state) => state.auth);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -46,9 +47,15 @@ function Index() {
     if (token) getProfile();
   }, [dispatch, token]);
 
+  const logout = (event) => {
+    event.preventDefault();
+    dispatch(setUser(null));
+    dispatch(setToken(null));
+    navigate({ to: "/" });
+  };
   return (
     <>
-    <div id="landing-page">
+    <div  id="landing-page">
       <div style={{ backgroundColor: "#F1F3FF" }}>
         <nav className="navbar navbar-expand-lg bg-body-transparent">
           <img src={logo} alt="logo" />
@@ -70,10 +77,33 @@ function Index() {
             </div>
             <div className="offcanvas-body">
               <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-                <>
-                  <Button className="btn text-white nav-item btn-register" as={Link} to="/login">Login</Button>
-                  <Button className="btn text-white nav-item btn-register" as={Link} to="/register">Register</Button>
-                </>
+                <NavDropdown
+                title={
+                    <span>
+                    <Image
+                        src={user?.profile_picture}
+                        fluid
+                        style={{
+                        width: "30px",
+                        height: "30px",
+                        display: "inline-block",
+                        overflow: "hidden",
+                        borderRadius: "50%",
+                        marginRight: "5px",
+                        }}
+                    />
+                    {user?.name}
+                    </span>
+                }
+                id="basic-nav-dropdown"
+                >
+                <NavDropdown.Item as={Link} to="/profile">
+                    Profile
+                </NavDropdown.Item>
+                <NavDropdown.Item onClick={logout}>
+                    Logout
+                </NavDropdown.Item>
+                </NavDropdown>
               </ul>
             </div>
           </div>
@@ -88,7 +118,7 @@ function Index() {
                 terbaik dengan harga terjangkau. Selalu siap melayani kebutuhanmu
                 untuk sewa mobil selama 24 jam.
               </p>
-              <a className="btn text-white">Mulai Sewa Mobil</a>
+              <Link to="/cariMobil" className="btn text-white">Mulai Sewa Mobil</Link>
             </div>
           </div>
           <div className="col-md-6">
@@ -248,7 +278,7 @@ function Index() {
               <div className="d-flex align-items-center flex-column" style={{width: "80%"}}>
                   <h3 className="text-white judul-section6 text-center">Sewa Mobil di Jember Sekarang</h3>
                   <p className="text-white" style={{textAlign: "center"}}>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sapiente veniam minima doloremque ipsa nam. Reprehenderit, dolore explicabo repudiandae, cupiditate quam repellat officia corrupti ad dicta eaque, sed velit exercitationem vero!</p>
-                  <a className="btn btn-section6 text-white">Mulai Sewa Mobil</a>
+                  <Link to="/cariMobil" className="btn text-white">Mulai Sewa Mobil</Link>
               </div>
           </div>
       </div>
@@ -353,4 +383,3 @@ function Index() {
     </>
   );
 }
-

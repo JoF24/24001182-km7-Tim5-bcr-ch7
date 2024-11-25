@@ -81,6 +81,7 @@ exports.createCar = async (data) => {
     const newCarData = {
         id: uuidv4(),
         ...data,
+        availableAt: new Date(data.availableAt).toISOString()
     };
 
     const newCar = await prisma.cars.create({

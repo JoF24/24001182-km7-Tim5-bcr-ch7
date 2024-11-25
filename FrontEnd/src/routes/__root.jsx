@@ -45,6 +45,15 @@ export const Route = createRootRoute({
                         <ToastContainer theme="colored" />
                     </>
                 )}
+                {isLoggedIn && (user?.role_id === 2) && (
+                    <>
+                        <Container>
+                            <Outlet />
+                        </Container>
+                        <TanStackRouterDevtools />
+                        <ToastContainer theme="colored" />
+                    </>
+                )}
                 {!isLoggedIn && (
                     // tampilkan konten login atau register tanpa sidebar dan navbar
                     <>

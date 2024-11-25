@@ -31,7 +31,7 @@ function Login() {
             if(user?.role_id === 1){
                 navigate({ to: "/Admin/manufactures" });
             }else if(user?.role_id === 2){
-                navigate({ to:"/"})
+                navigate({ to:"/landingpage"})
             }
         }
     }, [navigate, token, user]);
@@ -49,7 +49,7 @@ function Login() {
             if (data?.data.users.role_id === 1) {
                 navigate({to:"/Admin/manufactures"});
             } else {
-                navigate({to:"/"});
+                navigate({to:"/landingpage"});
             }
         },
         onError: (err) => {
