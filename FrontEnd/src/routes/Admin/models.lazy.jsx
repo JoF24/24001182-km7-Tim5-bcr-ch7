@@ -53,7 +53,7 @@ function Models() {
       <Row className="mt-4">
           <>
           <div className="d-flex justify-content-end mb-3">
-            <Button as={Link} to="/model/create" variant="primary" size="md">
+            <Button as={Link} to="/Admin/model/create" variant="primary" size="md">
               + Tambah Data
             </Button>
           </div>

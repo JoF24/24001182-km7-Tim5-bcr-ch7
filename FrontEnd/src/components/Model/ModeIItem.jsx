@@ -31,7 +31,7 @@ const ModelItem = ({ model }) => {
                         const result = await deleteModel(model.id);
                         if (result?.success) {
                             navigate({ 
-                                to: "/model/refresh",
+                                to: "/Admin/model/refresh",
                                 state: { successMessage: "Data Model berhasil dihapus." }
                             });
                         }
@@ -78,7 +78,7 @@ const ModelItem = ({ model }) => {
                                             <div className="d-grid gap-2">
                                                 <Button
                                                     as={Link}
-                                                    href={`/model/edit/${model?.id}`}
+                                                    href={`/Admin/model/edit/${model?.id}`}
                                                     variant="success"
                                                     size="md"
                                                 >
