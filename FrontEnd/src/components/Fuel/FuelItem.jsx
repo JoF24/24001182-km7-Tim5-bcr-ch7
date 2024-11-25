@@ -30,7 +30,7 @@ const FuelItem = ({ fuel }) => {
                         const result = await deleteFuel(fuel.id);
                         if (result?.success) {
                             navigate({ 
-                                to: "/fuel/refresh",
+                                to: "/Admin/fuel/refresh",
                                 state: { successMessage: "Data Fuel berhasil dihapus." }
                             });
                         } else {
@@ -80,7 +80,7 @@ const FuelItem = ({ fuel }) => {
                                         <div className="d-grid gap-2">
                                             <Button
                                                 as={Link}
-                                                to={`/fuel/edit/${fuel?.id}`}
+                                                to={`/Admin/fuel/edit/${fuel?.id}`}
                                                 variant="success"
                                                 size="md"
                                             >

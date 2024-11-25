@@ -54,7 +54,7 @@ function Index() {
         {user?.role_id === 1 && (
           <>
             <div className="d-flex justify-content-end mb-3">
-              <Button as={Link} to="/car/create" variant="primary" size="md">
+              <Button as={Link} to="/Admin/car/create" variant="primary" size="md">
                 + Tambah Data
               </Button>
             </div>
