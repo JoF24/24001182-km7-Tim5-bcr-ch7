@@ -12,11 +12,11 @@ function RefreshModel() {
   useEffect(() => {
     if (location.state?.successMessage) {
       navigate({
-        to: '/models',
+        to: '/Admin/models',
         state: { successMessage: 'Data Model berhasil dihapus !!' },
       })
     } else {
-      navigate({ to: '/models' })
+      navigate({ to: '/Admin/models' })
     }
   }, [location.state])
 
