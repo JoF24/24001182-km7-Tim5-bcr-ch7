@@ -5,7 +5,7 @@ import { useLocation } from '@tanstack/react-router'
 import Row from 'react-bootstrap/Row'
 import Button from 'react-bootstrap/Button'
 import { getModel } from '../../service/model'
-import ModelItem from '../../components/Model/ModelItem'
+import ModelItem from '../../components/Model/ModeIItem'
 import { toast } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -51,15 +51,13 @@ function Models() {
   return (
     <>
       <Row className="mt-4">
-        {user?.role_id === 1 && (
           <>
-            <div className="d-flex justify-content-end mb-3">
-              <Button as={Link} to="/model/create" variant="primary" size="md">
-                + Tambah Data
-              </Button>
-            </div>
+          <div className="d-flex justify-content-end mb-3">
+            <Button as={Link} to="/model/create" variant="primary" size="md">
+              + Tambah Data
+            </Button>
+          </div>
           </>
-        )}
 
         {!token && navigate({ to: '/login' })}
 
