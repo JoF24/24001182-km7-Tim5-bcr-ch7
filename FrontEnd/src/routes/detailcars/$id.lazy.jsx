@@ -129,7 +129,6 @@ function detailcars() {
         </React.Fragment>
       );
     };
-    
   
     return (
       <>
