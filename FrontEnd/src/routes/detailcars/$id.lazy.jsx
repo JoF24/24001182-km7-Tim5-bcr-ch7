@@ -47,7 +47,6 @@ function detailcars() {
   
     useEffect(() => {
         const fetchData = async () => {
-            setIsLoading(true)
             try {
                 const [
                 manufactureData,
@@ -89,9 +88,7 @@ function detailcars() {
                     setFuel_id(carDetailData.data?.fuel_id)
                     setImage(carDetailData.data?.image)
                     setIsNotFound(false)
-                    setIsLoading(false)
                 } else {
-                    setIsLoading(false)
                     setIsNotFound(true)
                 }
                 }
@@ -104,34 +101,35 @@ function detailcars() {
     }, [id]);
 
     const cetakHasil = () => {
-        if (!cars || cars.length === 0) {
-            return <p>No cars available.</p>;
-        }
-        
-        return(
-            <React.Fragment>
-            <p>Plate: {plate || "N/A"}</p>
-            <Image src={image} alt="Car" fluid />
-            <p>Model: {model || "N/A"}</p>
-            <p>Rent Per Day: {rentPerDay ? `Rp ${rentPerDay}` : "N/A"}</p>
-            <p>Capacity: {capacity || "N/A"}</p>
-            <p>Description: {description || "N/A"}</p>
-            <p>
-                Available At:{" "}
-                {availableAt
-                ? new Date(availableAt).toLocaleDateString("id-ID")
-                : "N/A"}
-            </p>
-            <p>Options: {options?.join(", ") || "N/A"}</p>
-            <p>Specs: {specs?.join(", ") || "N/A"}</p>
-            <p>Fuels : {fuels}</p>
-            <p>Manufacture : {manufacture}</p>
-            <p>Type : {type}</p>
-            <p>Transmission : {transmission}</p>
-            <p>Year : {year}</p>
-            </React.Fragment>
-        );
-    };      
+      return (
+        <React.Fragment>
+          <p>Plate: {plate || "N/A"}</p>
+          <Image src={image} alt="Car" fluid />
+          <p>Rent Per Day: {rentPerDay ? `Rp ${rentPerDay}` : "N/A"}</p>
+          <p>Capacity: {capacity || "N/A"}</p>
+          <p>Description: {description || "N/A"}</p>
+          <p>
+            Available At:{" "}
+            {availableAt
+              ? new Date(availableAt).toLocaleDateString("id-ID")
+              : "N/A"}
+          </p>
+          <p>
+            Options:{" "}
+            {Array.isArray(options)
+              ? options.join(", ")
+              : options || "N/A"}
+          </p>
+          <p>
+            Specs:{" "}
+            {Array.isArray(specs)
+              ? specs.join(", ")
+              : specs || "N/A"}
+          </p>
+        </React.Fragment>
+      );
+    };
+    
   
     return (
       <>
